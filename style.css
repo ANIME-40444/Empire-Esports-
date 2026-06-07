@@ -1,1 +1,248 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
 
+body{
+background:#0b0b0b;
+color:#ffffff;
+line-height:1.6;
+}
+
+.hero{
+height:500px;
+background:url("banner.jpg") center center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+}
+
+.overlay{
+position:relative;
+z-index:2;
+}
+
+.overlay h1{
+font-size:55px;
+font-weight:800;
+color:#ffffff;
+letter-spacing:2px;
+}
+
+.overlay h2{
+font-size:35px;
+color:#f8c12c;
+margin-top:10px;
+}
+
+.overlay p{
+font-size:18px;
+margin-top:10px;
+color:#ddd;
+}
+
+.prize-section{
+padding:40px 20px;
+text-align:center;
+}
+
+.prize-section h2{
+margin-bottom:25px;
+color:#f8c12c;
+}
+
+.card{
+background:#151515;
+border:1px solid #2c2c2c;
+padding:20px;
+margin:12px auto;
+max-width:500px;
+border-radius:12px;
+transition:.3s;
+}
+
+.card:hover{
+border-color:#f8c12c;
+transform:translateY(-3px);
+}
+
+.card h3{
+color:#f8c12c;
+margin-bottom:8px;
+}
+
+.register-section{
+padding:40px 20px;
+max-width:800px;
+margin:auto;
+}
+
+.register-section h2{
+text-align:center;
+color:#f8c12c;
+margin-bottom:20px;
+}
+
+.register-section h3{
+margin-top:20px;
+margin-bottom:10px;
+color:#f8c12c;
+}
+
+form{
+background:#151515;
+padding:25px;
+border-radius:15px;
+border:1px solid #2c2c2c;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+outline:none;
+border-radius:10px;
+background:#222;
+color:#fff;
+font-size:15px;
+}
+
+input:focus,
+select:focus{
+border:1px solid #f8c12c;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#f8c12c;
+color:#000;
+font-weight:700;
+font-size:16px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.payment-box{
+background:#1d1d1d;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+border-left:4px solid #f8c12c;
+}
+
+.status-section{
+padding:30px 20px;
+text-align:center;
+}
+
+.status-section h2{
+color:#f8c12c;
+margin-bottom:10px;
+}
+
+.approved-teams{
+padding:40px 20px;
+}
+
+.approved-teams h2{
+text-align:center;
+color:#f8c12c;
+margin-bottom:20px;
+}
+
+#teamContainer{
+max-width:800px;
+margin:auto;
+background:#151515;
+padding:20px;
+border-radius:12px;
+border:1px solid #2c2c2c;
+}
+
+.rules{
+padding:40px 20px;
+max-width:900px;
+margin:auto;
+}
+
+.rules h2{
+text-align:center;
+color:#f8c12c;
+margin-bottom:20px;
+}
+
+.rules ul{
+list-style:none;
+}
+
+.rules li{
+background:#151515;
+padding:15px;
+margin-bottom:10px;
+border-radius:10px;
+border-left:4px solid #f8c12c;
+}
+
+footer{
+margin-top:40px;
+padding:25px;
+text-align:center;
+background:#111;
+border-top:1px solid #2c2c2c;
+}
+
+footer h3{
+color:#f8c12c;
+margin-bottom:5px;
+}
+
+@media(max-width:768px){
+
+.hero{
+height:350px;
+}
+
+.overlay h1{
+font-size:36px;
+}
+
+.overlay h2{
+font-size:24px;
+}
+
+.overlay p{
+font-size:14px;
+}
+
+.card{
+margin:10px;
+}
+
+form{
+padding:18px;
+}
+
+}
