@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empire Esports Season 2</title>
 
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero">
+
+<div class="overlay">
+
+<h1>EMPIRE ESPORTS</h1>
+
+<h2>SEASON 2</h2>
+
+<p>Free Fire Squad Tournament</p>
+
+</div>
+
+</header>
+
+<section class="prize-section">
+
+<h2>🏆 Tournament Details</h2>
+
+<div class="card">
+<h3>Prize Pool</h3>
+<p>1300 BDT</p>
+</div>
+
+<div class="card">
+<h3>Champion</h3>
+<p>900 BDT</p>
+</div>
+
+<div class="card">
+<h3>Runner-Up</h3>
+<p>400 BDT</p>
+</div>
+
+<div class="card">
+<h3>Entry Fee</h3>
+<p>60 TK</p>
+</div>
+
+<div class="card">
+<h3>Team Slot</h3>
+<p>24 Team</p>
+</div>
+
+</section>
+
+<section class="register-section">
+
+<h2>Join Your Squad</h2>
+
+<form id="teamForm">
+
+<input
+type="text"
+id="squadName"
+placeholder="Squad Name"
+required
+>
+
+<input
+type="text"
+id="leaderName"
+placeholder="Leader Name"
+required
+>
+
+<input
+type="text"
+id="leaderUid"
+placeholder="Leader UID"
+required
+>
+
+<input
+type="text"
+id="phone"
+placeholder="Mobile Number"
+required
+>
+
+<h3>Player Information</h3>
+
+<input type="text" id="player1" placeholder="Player 1 Name" required>
+<input type="text" id="player1Uid" placeholder="Player 1 UID" required>
+
+<input type="text" id="player2" placeholder="Player 2 Name" required>
+<input type="text" id="player2Uid" placeholder="Player 2 UID" required>
+
+<input type="text" id="player3" placeholder="Player 3 Name" required>
+<input type="text" id="player3Uid" placeholder="Player 3 UID" required>
+
+<input type="text" id="player4" placeholder="Player 4 Name" required>
+<input type="text" id="player4Uid" placeholder="Player 4 UID" required>
+
+<h3>Payment Information</h3>
+
+<div class="payment-box">
+
+<p><b>Bkash:</b> 01305736690</p>
+
+<p><b>Nagad:</b> 01603599843</p>
+
+</div>
+
+<select id="paymentMethod">
+
+<option value="">Select Payment Method</option>
+
+<option>Bkash</option>
+
+<option>Nagad</option>
+
+</select>
+
+<input
+type="text"
+id="senderNumber"
+placeholder="Sender Number"
+required
+>
+
+<input
+type="text"
+id="transactionId"
+placeholder="Transaction ID"
+required
+>
+
+<button type="submit">
+Submit Registration
+</button>
+
+</form>
+
+</section>
+
+<section class="status-section">
+
+<h2>Registration Status</h2>
+
+<p>
+After submission your request will remain
+<b>Pending</b> until approved by Admin.
+</p>
+
+</section>
+
+<section class="approved-teams">
+
+<h2>Approved Teams</h2>
+
+<div id="teamContainer">
+
+<p>No approved teams yet.</p>
+
+</div>
+
+</section>
+
+<section class="rules">
+
+<h2>Tournament Rules</h2>
+
+<ul>
+
+<li>No Hack</li>
+
+<li>No Emulator</li>
+
+<li>No Teaming</li>
+
+<li>No Fake Payment</li>
+
+<li>Host Decision Final</li>
+
+<li>Payment Non Refundable</li>
+
+</ul>
+
+</section>
+
+<footer>
+
+<h3>Empire Society</h3>
+
+<p>Free Fire Community Tournament</p>
+
+</footer>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
+
+</body>
+  </html>
