@@ -17,6 +17,10 @@ const rejectedTeamsEl = document.getElementById("rejectedTeams");
 
 async function loadTeams() {
 
+try {
+
+console.log("Loading Teams...");
+
 teamContainer.innerHTML = "";
 
 let total = 0;
@@ -26,6 +30,16 @@ let rejected = 0;
 
 const snapshot = await getDocs(collection(db, "teams"));
 
+console.log("Teams Found:", snapshot.size);
+
+if(snapshot.empty){
+teamContainer.innerHTML = `
+<p style="text-align:center;">
+No Teams Found
+</p>
+`;
+}
+
 snapshot.forEach((teamDoc) => {
 
 const data = teamDoc.data();
@@ -33,41 +47,48 @@ const id = teamDoc.id;
 
 total++;
 
-if (data.status === "pending") pending++;
-if (data.status === "approved") approved++;
-if (data.status === "rejected") rejected++;
+if(data.status === "pending") pending++;
+if(data.status === "approved") approved++;
+if(data.status === "rejected") rejected++;
 
 const card = document.createElement("div");
+
 card.className = "team-card";
 
 card.innerHTML = `
-<h3>${data.squadName}</h3>
 
-<p><b>Leader:</b> ${data.leaderName}</p>
-<p><b>Leader UID:</b> ${data.leaderUid}</p>
-<p><b>Phone:</b> ${data.phone}</p>
+<h3>${data.squadName || "No Name"}</h3>
 
-<hr>
-
-<p><b>Player 1:</b> ${data.player1}</p>
-<p><b>UID:</b> ${data.player1Uid}</p>
-
-<p><b>Player 2:</b> ${data.player2}</p>
-<p><b>UID:</b> ${data.player2Uid}</p>
-
-<p><b>Player 3:</b> ${data.player3}</p>
-<p><b>UID:</b> ${data.player3Uid}</p>
-
-<p><b>Player 4:</b> ${data.player4}</p>
-<p><b>UID:</b> ${data.player4Uid}</p>
+<p><b>Leader:</b> ${data.leaderName || "-"}</p>
+<p><b>Leader UID:</b> ${data.leaderUid || "-"}</p>
+<p><b>Phone:</b> ${data.phone || "-"}</p>
 
 <hr>
 
-<p><b>Payment:</b> ${data.paymentMethod}</p>
-<p><b>Sender:</b> ${data.senderNumber}</p>
-<p><b>Transaction ID:</b> ${data.transactionId}</p>
+<p><b>Player 1:</b> ${data.player1 || "-"}</p>
+<p><b>UID:</b> ${data.player1Uid || "-"}</p>
 
-<p><b>Status:</b> ${data.status}</p>
+<p><b>Player 2:</b> ${data.player2 || "-"}</p>
+<p><b>UID:</b> ${data.player2Uid || "-"}</p>
+
+<p><b>Player 3:</b> ${data.player3 || "-"}</p>
+<p><b>UID:</b> ${data.player3Uid || "-"}</p>
+
+<p><b>Player 4:</b> ${data.player4 || "-"}</p>
+<p><b>UID:</b> ${data.player4Uid || "-"}</p>
+
+<hr>
+
+<p><b>Payment:</b> ${data.paymentMethod || "-"}</p>
+<p><b>Sender:</b> ${data.senderNumber || "-"}</p>
+<p><b>Transaction ID:</b> ${data.transactionId || "-"}</p>
+
+<p>
+<b>Status:</b>
+<span style="color:gold;">
+${data.status || "pending"}
+</span>
+</p>
 
 <div class="btn-group">
 
@@ -87,6 +108,7 @@ Delete
 </button>
 
 </div>
+
 `;
 
 teamContainer.appendChild(card);
@@ -97,6 +119,18 @@ totalTeamsEl.innerText = total;
 pendingTeamsEl.innerText = pending;
 approvedTeamsEl.innerText = approved;
 rejectedTeamsEl.innerText = rejected;
+
+}catch(error){
+
+console.error("Admin Error:", error);
+
+teamContainer.innerHTML = `
+<p style="color:red;text-align:center;">
+${error.message}
+</p>
+`;
+
+}
 
 }
 
@@ -122,10 +156,7 @@ loadTeams();
 
 window.deleteTeam = async function(id){
 
-const confirmDelete =
-confirm("Delete this team?");
-
-if(!confirmDelete) return;
+if(!confirm("Delete this team?")) return;
 
 await deleteDoc(doc(db,"teams",id));
 
