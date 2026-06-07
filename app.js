@@ -3,16 +3,22 @@ import { db } from "./firebase.js";
 import {
 collection,
 addDoc,
-serverTimestamp
+serverTimestamp,
+query,
+where,
+getDocs
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 const form = document.getElementById("teamForm");
+
+if(form){
 
 form.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
 const submitBtn = form.querySelector("button");
+
 submitBtn.innerText = "Submitting...";
 submitBtn.disabled = true;
 
@@ -91,3 +97,74 @@ submitBtn.innerText = "Submit Registration";
 submitBtn.disabled = false;
 
 });
+
+}
+
+async function loadApprovedTeams(){
+
+const approvedContainer =
+document.getElementById("approvedTeams");
+
+if(!approvedContainer) return;
+
+approvedContainer.innerHTML = "";
+
+try{
+
+const q = query(
+collection(db,"teams"),
+where("status","==","approved")
+);
+
+const snapshot = await getDocs(q);
+
+if(snapshot.empty){
+
+approvedContainer.innerHTML = `
+<div class="team-card">
+No approved teams yet.
+</div>
+`;
+
+return;
+
+}
+
+snapshot.forEach((teamDoc)=>{
+
+const team = teamDoc.data();
+
+approvedContainer.innerHTML += `
+
+<div class="team-card">
+
+<h3>${team.squadName}</h3>
+
+<p><strong>Leader:</strong> ${team.leaderName}</p>
+
+<p>
+<strong>Status:</strong>
+✅ Approved
+</p>
+
+</div>
+
+`;
+
+});
+
+}catch(error){
+
+console.error(error);
+
+approvedContainer.innerHTML = `
+<div class="team-card">
+Failed to load approved teams.
+</div>
+`;
+
+}
+
+}
+
+loadApprovedTeams();
