@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empire Esports Admin Panel</title>
 
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.admin-header{
+text-align:center;
+padding:30px;
+background:#111;
+border-bottom:2px solid gold;
+}
+
+.admin-header h1{
+color:gold;
+}
+
+.stats{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+}
+
+.stat-box{
+background:#151515;
+padding:20px;
+border-radius:12px;
+min-width:180px;
+text-align:center;
+border:1px solid #333;
+}
+
+.stat-box h2{
+color:gold;
+}
+
+.team-list{
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.team-card{
+background:#151515;
+padding:20px;
+margin-bottom:15px;
+border-radius:12px;
+border:1px solid #333;
+}
+
+.team-card h3{
+color:gold;
+margin-bottom:10px;
+}
+
+.btn-group{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.approve-btn{
+background:#28a745;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.reject-btn{
+background:#dc3545;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.delete-btn{
+background:#555;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="admin-header">
+
+<h1>👑 Empire Esports Admin Panel</h1>
+
+<p>Season 2 Management Dashboard</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2 id="totalTeams">0</h2>
+<p>Total Teams</p>
+</div>
+
+<div class="stat-box">
+<h2 id="pendingTeams">0</h2>
+<p>Pending</p>
+</div>
+
+<div class="stat-box">
+<h2 id="approvedTeams">0</h2>
+<p>Approved</p>
+</div>
+
+<div class="stat-box">
+<h2 id="rejectedTeams">0</h2>
+<p>Rejected</p>
+</div>
+
+</div>
+
+<div class="team-list">
+
+<h2 style="text-align:center;color:gold;margin-bottom:20px;">
+Pending Team Requests
+</h2>
+
+<div id="teamContainer">
+
+<p style="text-align:center;">
+Loading Teams...
+</p>
+
+</div>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
