@@ -1,169 +1,152 @@
 import { db } from "./firebase.js";
 
 import {
-collection,
-addDoc,
-serverTimestamp,
-query,
-where,
-getDocs
+  collection,
+  addDoc,
+  serverTimestamp,
+  query,
+  where,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+
+// =====================
+// TEAM REGISTRATION
+// =====================
 
 const form = document.getElementById("teamForm");
 
-if(form){
+if (form) {
 
-form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
 
-e.preventDefault();
+    e.preventDefault();
 
-const submitBtn = form.querySelector("button");
+    const submitBtn = form.querySelector("button");
 
-submitBtn.innerText = "Submitting...";
-submitBtn.disabled = true;
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
 
-try {
+    try {
 
-await addDoc(collection(db, "teams"), {
+      await addDoc(collection(db, "teams"), {
 
-squadName:
-document.getElementById("squadName").value,
+        squadName: document.getElementById("squadName").value,
 
-leaderName:
-document.getElementById("leaderName").value,
+        phone: document.getElementById("phone").value,
 
-leaderUid:
-document.getElementById("leaderUid").value,
+        player1: document.getElementById("player1").value,
 
-phone:
-document.getElementById("phone").value,
+        player2: document.getElementById("player2").value,
 
-player1:
-document.getElementById("player1").value,
+        player3: document.getElementById("player3").value,
 
-player1Uid:
-document.getElementById("player1Uid").value,
+        player4: document.getElementById("player4").value,
 
-player2:
-document.getElementById("player2").value,
+        paymentMethod: document.getElementById("paymentMethod").value,
 
-player2Uid:
-document.getElementById("player2Uid").value,
+        transactionId: document.getElementById("transactionId").value,
 
-player3:
-document.getElementById("player3").value,
+        status: "pending",
 
-player3Uid:
-document.getElementById("player3Uid").value,
+        createdAt: serverTimestamp()
 
-player4:
-document.getElementById("player4").value,
+      });
 
-player4Uid:
-document.getElementById("player4Uid").value,
+      alert(
+        "✅ Registration Submitted Successfully!\n\nStatus: Pending\nAdmin khub taratari review korbe."
+      );
 
-paymentMethod:
-document.getElementById("paymentMethod").value,
+      form.reset();
 
-senderNumber:
-document.getElementById("senderNumber").value,
+      loadApprovedTeams();
 
-transactionId:
-document.getElementById("transactionId").value,
+    } catch (error) {
 
-status: "pending",
+      console.error(error);
 
-createdAt: serverTimestamp()
+      alert(
+        "❌ Submit Failed!\nPlease Try Again."
+      );
 
-});
+    }
 
-alert(
-"✅ Registration Submitted Successfully!\n\nStatus: Pending\nAdmin khub taratari review korbe."
-);
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Registration";
 
-form.reset();
-
-} catch (error) {
-
-console.error(error);
-
-alert(
-"❌ Submit Failed!\nPlease Try Again."
-);
+  });
 
 }
 
-submitBtn.innerText = "Submit Registration";
-submitBtn.disabled = false;
 
-});
+// =====================
+// APPROVED TEAMS
+// =====================
 
-}
+async function loadApprovedTeams() {
 
-async function loadApprovedTeams(){
+  const approvedContainer =
+    document.getElementById("approvedTeams");
 
-const approvedContainer =
-document.getElementById("approvedTeams");
+  if (!approvedContainer) return;
 
-if(!approvedContainer) return;
+  approvedContainer.innerHTML = "";
 
-approvedContainer.innerHTML = "";
+  try {
 
-try{
+    const q = query(
+      collection(db, "teams"),
+      where("status", "==", "approved")
+    );
 
-const q = query(
-collection(db,"teams"),
-where("status","==","approved")
-);
+    const snapshot = await getDocs(q);
 
-const snapshot = await getDocs(q);
+    if (snapshot.empty) {
 
-if(snapshot.empty){
+      approvedContainer.innerHTML = `
+        <p>No approved teams yet.</p>
+      `;
 
-approvedContainer.innerHTML = `
-<div class="team-card">
-No approved teams yet.
-</div>
-`;
+      return;
+    }
 
-return;
+    snapshot.forEach((teamDoc) => {
 
-}
+      const team = teamDoc.data();
 
-snapshot.forEach((teamDoc)=>{
+      approvedContainer.innerHTML += `
 
-const team = teamDoc.data();
+        <div class="team-card">
 
-approvedContainer.innerHTML += `
+          <h3>🏆 ${team.squadName}</h3>
 
-<div class="team-card">
+          <p><strong>Mobile:</strong> ${team.phone}</p>
 
-<h3>${team.squadName}</h3>
+          <p><strong>Player 1:</strong> ${team.player1}</p>
 
-<p><strong>Leader:</strong> ${team.leaderName}</p>
+          <p><strong>Player 2:</strong> ${team.player2}</p>
 
-<p>
-<strong>Status:</strong>
-✅ Approved
-</p>
+          <p><strong>Player 3:</strong> ${team.player3}</p>
 
-</div>
+          <p><strong>Player 4:</strong> ${team.player4}</p>
 
-`;
+          <p>✅ Approved Team</p>
 
-});
+        </div>
 
-}catch(error){
+      `;
 
-console.error(error);
+    });
 
-approvedContainer.innerHTML = `
-<div class="team-card">
-Failed to load approved teams.
-</div>
-`;
+  } catch (error) {
 
-}
+    console.error(error);
+
+    approvedContainer.innerHTML = `
+      <p>Failed to load approved teams.</p>
+    `;
+
+  }
 
 }
 
