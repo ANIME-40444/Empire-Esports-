@@ -2,196 +2,145 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#0b0b0b;
-color:#ffffff;
+background:#000;
+color:#fff;
 line-height:1.6;
 }
 
 .hero{
-height:500px;
-background:url("banner.jpg") center center/cover no-repeat;
+height:300px;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+url("https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200");
+background-size:cover;
+background-position:center;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
-position:relative;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.65);
-}
-
-.overlay{
-position:relative;
-z-index:2;
 }
 
 .overlay h1{
-font-size:55px;
-font-weight:800;
-color:#ffffff;
-letter-spacing:2px;
+font-size:45px;
+color:gold;
 }
 
 .overlay h2{
 font-size:35px;
-color:#f8c12c;
-margin-top:10px;
+margin:10px 0;
 }
 
 .overlay p{
 font-size:18px;
-margin-top:10px;
 color:#ddd;
 }
 
-.prize-section{
-padding:40px 20px;
-text-align:center;
-}
-
-.prize-section h2{
-margin-bottom:25px;
-color:#f8c12c;
-}
-
-.card{
-background:#151515;
-border:1px solid #2c2c2c;
-padding:20px;
-margin:12px auto;
-max-width:500px;
-border-radius:12px;
-transition:.3s;
-}
-
-.card:hover{
-border-color:#f8c12c;
-transform:translateY(-3px);
-}
-
-.card h3{
-color:#f8c12c;
-margin-bottom:8px;
-}
-
-.register-section{
-padding:40px 20px;
-max-width:800px;
-margin:auto;
-}
-
-.register-section h2{
-text-align:center;
-color:#f8c12c;
-margin-bottom:20px;
-}
-
-.register-section h3{
-margin-top:20px;
-margin-bottom:10px;
-color:#f8c12c;
-}
-
-form{
-background:#151515;
-padding:25px;
-border-radius:15px;
-border:1px solid #2c2c2c;
-}
-
-input,
-select{
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-outline:none;
-border-radius:10px;
-background:#222;
-color:#fff;
-font-size:15px;
-}
-
-input:focus,
-select:focus{
-border:1px solid #f8c12c;
-}
-
-button{
-width:100%;
-padding:15px;
-background:#f8c12c;
-color:#000;
-font-weight:700;
-font-size:16px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-transition:.3s;
-}
-
-button:hover{
-opacity:.9;
-}
-
-.payment-box{
-background:#1d1d1d;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;
-border-left:4px solid #f8c12c;
-}
-
-.status-section{
-padding:30px 20px;
-text-align:center;
-}
-
-.status-section h2{
-color:#f8c12c;
-margin-bottom:10px;
-}
-
-.approved-teams{
-padding:40px 20px;
-}
-
-.approved-teams h2{
-text-align:center;
-color:#f8c12c;
-margin-bottom:20px;
-}
-
-#teamContainer{
-max-width:800px;
-margin:auto;
-background:#151515;
-padding:20px;
-border-radius:12px;
-border:1px solid #2c2c2c;
-}
-
+.prize-section,
+.register-section,
+.status-section,
+.approved-teams,
 .rules{
 padding:40px 20px;
 max-width:900px;
 margin:auto;
 }
 
+.prize-section h2,
+.register-section h2,
+.status-section h2,
+.approved-teams h2,
 .rules h2{
 text-align:center;
-color:#f8c12c;
-margin-bottom:20px;
+color:gold;
+margin-bottom:30px;
+}
+
+.card{
+background:#111;
+border:1px solid #333;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+text-align:center;
+}
+
+.card h3{
+color:gold;
+margin-bottom:10px;
+}
+
+form{
+background:#111;
+padding:25px;
+border-radius:15px;
+border:1px solid #333;
+}
+
+form h3{
+margin:20px 0 10px;
+color:gold;
+}
+
+input,
+select{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+border-radius:10px;
+background:#1b1b1b;
+color:white;
+font-size:16px;
+}
+
+input:focus,
+select:focus{
+outline:2px solid gold;
+}
+
+.payment-box{
+background:#1b1b1b;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.payment-box p{
+margin:8px 0;
+}
+
+button{
+width:100%;
+padding:15px;
+background:gold;
+color:black;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#ffd700;
+transform:scale(1.02);
+}
+
+.team-card{
+background:#111;
+border:1px solid #333;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.team-card h3{
+color:gold;
+margin-bottom:10px;
 }
 
 .rules ul{
@@ -199,50 +148,38 @@ list-style:none;
 }
 
 .rules li{
-background:#151515;
+background:#111;
 padding:15px;
-margin-bottom:10px;
+margin-bottom:12px;
+border-left:5px solid gold;
 border-radius:10px;
-border-left:4px solid #f8c12c;
 }
 
 footer{
-margin-top:40px;
-padding:25px;
 text-align:center;
+padding:30px;
 background:#111;
-border-top:1px solid #2c2c2c;
+margin-top:40px;
+border-top:2px solid gold;
 }
 
 footer h3{
-color:#f8c12c;
-margin-bottom:5px;
+color:gold;
+margin-bottom:10px;
 }
 
 @media(max-width:768px){
 
-.hero{
-height:350px;
-}
-
 .overlay h1{
-font-size:36px;
+font-size:35px;
 }
 
 .overlay h2{
-font-size:24px;
+font-size:28px;
 }
 
-.overlay p{
-font-size:14px;
-}
-
-.card{
-margin:10px;
-}
-
-form{
-padding:18px;
+.hero{
+height:250px;
 }
 
 }
