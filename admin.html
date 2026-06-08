@@ -9,102 +9,136 @@
 
 <style>
 
+body{
+background:#0d0d0d;
+color:white;
+font-family:Poppins,sans-serif;
+margin:0;
+padding:0;
+}
+
 .admin-header{
-    text-align:center;
-    padding:30px;
-    background:#111;
-    border-bottom:2px solid gold;
+text-align:center;
+padding:30px;
+background:#111;
+border-bottom:2px solid gold;
 }
 
 .admin-header h1{
-    color:gold;
+color:gold;
+margin-bottom:10px;
 }
 
 .admin-header p{
-    color:#ccc;
-    margin-top:10px;
+color:#bbb;
 }
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-    padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+padding:20px;
+max-width:1400px;
+margin:auto;
 }
 
 .stat-box{
-    background:#111;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    border:1px solid #333;
+background:#151515;
+padding:20px;
+border-radius:15px;
+text-align:center;
+border:1px solid #333;
 }
 
 .stat-box h2{
-    color:gold;
-    font-size:35px;
+color:gold;
+font-size:32px;
+margin-bottom:10px;
 }
 
 .team-list{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
+max-width:1400px;
+margin:auto;
+padding:20px;
 }
 
 .team-list h2{
-    text-align:center;
-    color:gold;
-    margin-bottom:25px;
+text-align:center;
+color:gold;
+margin-bottom:25px;
 }
 
 .team-card{
-    background:#111;
-    border:1px solid #333;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
+background:#151515;
+border:1px solid #333;
+border-radius:15px;
+padding:20px;
+margin-bottom:20px;
 }
 
 .team-card h3{
-    color:gold;
-    margin-bottom:15px;
+color:gold;
+margin-bottom:15px;
 }
 
 .team-card p{
-    margin:8px 0;
+margin:8px 0;
 }
 
 .btn-group{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:15px;
 }
 
 .approve-btn,
 .reject-btn,
 .delete-btn{
-    flex:1;
-    padding:12px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
+flex:1;
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
 }
 
 .approve-btn{
-    background:#28a745;
-    color:white;
+background:#28a745;
+color:white;
 }
 
 .reject-btn{
-    background:#dc3545;
-    color:white;
+background:#dc3545;
+color:white;
 }
 
 .delete-btn{
-    background:#555;
-    color:white;
+background:#555;
+color:white;
+}
+
+.approve-btn:hover,
+.reject-btn:hover,
+.delete-btn:hover{
+opacity:.9;
+}
+
+hr{
+border:1px solid #333;
+margin:15px 0;
+}
+
+@media(max-width:768px){
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.btn-group{
+flex-direction:column;
+}
+
 }
 
 </style>
@@ -143,11 +177,21 @@
 <p>Rejected Teams</p>
 </div>
 
+<div class="stat-box">
+<h2 id="groupATeams">0</h2>
+<p>Group A Teams</p>
+</div>
+
+<div class="stat-box">
+<h2 id="groupBTeams">0</h2>
+<p>Group B Teams</p>
+</div>
+
 </div>
 
 <div class="team-list">
 
-<h2>Team Requests</h2>
+<h2>🔥 Team Requests</h2>
 
 <div id="teamContainer">
 
