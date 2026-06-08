@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empire Esports Season 2</title>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HERO SECTION -->
     <header class="hero">
         <div class="overlay">
             <h1>EMPIRE ESPORTS</h1>
@@ -19,8 +17,7 @@
         </div>
     </header>
 
-    <!-- COUNTDOWN -->
-    <section class="countdown-section">
+    <section class="countdown-section" style="text-align: center;">
         <h2>⏳ ম্যাচ শুরু হতে বাকি</h2>
         <div class="countdown-box">
             <div class="time-box">
@@ -40,12 +37,17 @@
                 <p>সেকেন্ড</p>
             </div>
         </div>
-        <p class="match-date">
-            📅 12 June 2026 | 🕓 4:00 PM
-        </p>
+        
+        <div class="match-dates-container" style="margin-top: 20px; font-weight: bold; font-size: 1.1rem; line-height: 1.8;">
+            <p style="color:#ffd700; margin: 5px 0;">
+                🔥 Group A Match: 12 June 2026 - 4:00 PM
+            </p>
+            <p style="color:#00ff88; margin: 5px 0;">
+                🔥 Group B Match: 13 June 2026 - 4:00 PM
+            </p>
+        </div>
     </section>
 
-    <!-- PRIZE POOL -->
     <section class="prize-section">
         <h2>🏆 পুরস্কার তালিকা</h2>
         <div class="prize-grid">
@@ -76,7 +78,6 @@
         </div>
     </section>
 
-    <!-- GROUP STATUS -->
     <section class="group-section">
         <h2>📊 গ্রুপ স্ট্যাটাস</h2>
         <div class="group-container">
@@ -91,7 +92,6 @@
         </div>
     </section>
 
-    <!-- REGISTRATION -->
     <section class="register-section">
         <h2>🔥 Join Your Squad</h2>
         <form id="teamForm">
@@ -128,7 +128,6 @@
         </form>
     </section>
 
-    <!-- REGISTRATION STATUS -->
     <section class="status-section">
         <h2>📌 Registration Status</h2>
         <p>
@@ -137,7 +136,6 @@
         </p>
     </section>
 
-    <!-- APPROVED TEAMS (UPDATED SECTION) -->
     <section class="approved-teams">
         <h2>✅ Approved Teams</h2>
         <div class="group-approved">
@@ -155,7 +153,6 @@
         </div>
     </section>
 
-    <!-- RULES -->
     <section class="rules">
         <h2>📜 Tournament Rules</h2>
         <ul>
@@ -173,7 +170,6 @@
         </ul>
     </section>
 
-    <!-- CONTACT -->
     <section class="contact-section">
         <h2>📞 Contact</h2>
         <div class="contact-box">
@@ -182,7 +178,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <h3>👑 Empire Society</h3>
         <p>Free Fire Community Tournament</p>
@@ -192,12 +187,10 @@
         </div>
     </footer>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
     <a href="https://chat.whatsapp.com/FIeTE0CA8nBAP8PPnQVRpR" target="_blank" class="floating-whatsapp" aria-label="Join WhatsApp Group">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- SCRIPTS -->
     <script type="module" src="firebase.js"></script>
     <script type="module" src="app.js"></script>
 </body>
