@@ -1,220 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Empire Esports Season 2</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Esports Season 2</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="hero">
-
-<div class="overlay">
-
-<h1>EMPIRE ESPORTS</h1>
-
-<h2>SEASON 2</h2>
-
-<p>Free Fire Squad Tournament</p>
-
-</div>
-
-</header>
-
-<section class="prize-section">
-
-<h2>🏆 Tournament Details</h2>
-
-<div class="card">
-<h3>Prize Pool</h3>
-<p>1300 BDT</p>
-</div>
-
-<div class="card">
-<h3>Champion</h3>
-<p>900 BDT</p>
-</div>
-
-<div class="card">
-<h3>Runner-Up</h3>
-<p>400 BDT</p>
-</div>
-
-<div class="card">
-<h3>Entry Fee</h3>
-<p>60 TK</p>
-</div>
-
-<div class="card">
-<h3>Team Slot</h3>
-<p>24 Teams</p>
-</div>
-
-<div class="card">
-<h3>Tournament Date</h3>
-<p>14 June 2025</p>
-</div>
-
-</section>
-
-<section class="register-section">
-
-<h2>Join Your Squad</h2>
-
-<form id="teamForm">
-
-<input
-type="text"
-id="squadName"
-placeholder="Squad Name"
-required
->
-
-<input
-type="tel"
-id="phone"
-placeholder="Mobile Number"
-required
->
-
-<h3>Player Information</h3>
-
-<input
-type="text"
-id="player1"
-placeholder="Player 1 Name"
-required
->
-
-<input
-type="text"
-id="player2"
-placeholder="Player 2 Name"
-required
->
-
-<input
-type="text"
-id="player3"
-placeholder="Player 3 Name"
-required
->
-
-<input
-type="text"
-id="player4"
-placeholder="Player 4 Name"
-required
->
-
-<h3>Payment Information</h3>
-
-<div class="payment-box">
-
-<p><b>Bkash (Send Money):</b> 01305736690</p>
-
-<p><b>Nagad (Send Money):</b> 01603599843</p>
-
-</div>
-
-<select id="paymentMethod" required>
-
-<option value="">
-Select Payment Method
-</option>
-
-<option value="Bkash">
-Bkash
-</option>
-
-<option value="Nagad">
-Nagad
-</option>
-
-</select>
-
-<input
-type="text"
-id="transactionId"
-placeholder="Transaction ID"
-required
->
-
-<button type="submit">
-
-Submit Registration
-
-</button>
-
-</form>
-
-</section>
-
-<section class="status-section">
-
-<h2>Registration Status</h2>
-
-<p>
-
-After submission your request will remain
-<b>Pending</b> until approved by Admin.
-
-</p>
-
-</section>
-
-<section class="approved-teams">
-
-<h2>Approved Teams</h2>
-
-<div id="approvedTeams">
-
-<p>Loading Teams...</p>
-
-</div>
-
-</section>
-
-<section class="rules">
-
-<h2>Tournament Rules</h2>
-
-<ul>
-
-<li>No Hack</li>
-
-<li>No Emulator</li>
-
-<li>No Teaming</li>
-
-<li>No Fake Payment</li>
-
-<li>Host Decision Final</li>
-
-<li>Payment Non Refundable</li>
-
-<li>Only Approved Teams Can Participate</li>
-
-<li>Respect All Players And Host</li>
-
-</ul>
-
-</section>
-
-<footer>
-
-<h3>Empire Society</h3>
-
-<p>Free Fire Community Tournament</p>
-
-</footer>
-
-<script type="module" src="firebase.js"></script>
-<script type="module" src="app.js"></script>
-
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="overlay">
+            <h1>EMPIRE ESPORTS</h1>
+            <h2>SEASON 2</h2>
+            <p>FREE FIRE SQUAD TOURNAMENT</p>
+        </div>
+    </header>
+
+    <!-- COUNTDOWN -->
+    <section class="countdown-section">
+        <h2>⏳ ম্যাচ শুরু হতে বাকি</h2>
+        <div class="countdown-box">
+            <div class="time-box">
+                <span id="days">00</span>
+                <p>দিন</p>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <p>ঘণ্টা</p>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <p>মিনিট</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <p>সেকেন্ড</p>
+            </div>
+        </div>
+        <p class="match-date">
+            📅 12 June 2026 | 🕓 4:00 PM
+        </p>
+    </section>
+
+    <!-- PRIZE POOL -->
+    <section class="prize-section">
+        <h2>🏆 পুরস্কার তালিকা</h2>
+        <div class="prize-grid">
+            <div class="card total-pool">
+                <h3>মোট প্রাইজ পুল</h3>
+                <p>1300 BDT</p>
+            </div>
+            <div class="card">
+                <h3>Champion 🥇</h3>
+                <p>600 BDT</p>
+            </div>
+            <div class="card">
+                <h3>1st Runner-Up 🥈</h3>
+                <p>400 BDT</p>
+            </div>
+            <div class="card">
+                <h3>2nd Runner-Up 🥉</h3>
+                <p>200 BDT</p>
+            </div>
+            <div class="card">
+                <h3>3rd Runner-Up</h3>
+                <p>100 BDT</p>
+            </div>
+            <div class="card entry-fee">
+                <h3>এন্ট্রি ফি 🎟️</h3>
+                <p>60 TK</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GROUP STATUS -->
+    <section class="group-section">
+        <h2>📊 গ্রুপ স্ট্যাটাস</h2>
+        <div class="group-container">
+            <div class="group-card">
+                <h3>GROUP A</h3>
+                <p>টিম: <span id="groupACount">0</span>/12</p>
+            </div>
+            <div class="group-card">
+                <h3>GROUP B</h3>
+                <p>টিম: <span id="groupBCount">0</span>/12</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION -->
+    <section class="register-section">
+        <h2>🔥 Join Your Squad</h2>
+        <form id="teamForm">
+            <input type="text" id="squadName" placeholder="স্কোয়াড নাম" required>
+            <input type="text" id="phone" placeholder="মোবাইল নাম্বার" required>
+            
+            <select id="group" required>
+                <option value="">গ্রুপ নির্বাচন করুন</option>
+                <option value="A">GROUP A</option>
+                <option value="B">GROUP B</option>
+            </select>
+
+            <h3>👥 প্লেয়ারদের নাম</h3>
+            <input type="text" id="player1" placeholder="Player 1 Name (Leader)" required>
+            <input type="text" id="player2" placeholder="Player 2 Name" required>
+            <input type="text" id="player3" placeholder="Player 3 Name" required>
+            <input type="text" id="player4" placeholder="Player 4 Name" required>
+
+            <h3>💳 পেমেন্ট তথ্য</h3>
+            <div class="payment-box">
+                <p><b><i class="text-pink">bKash</i> (Send Money):</b> 01305736690</p>
+                <p><b><i class="text-orange">Nagad</i> (Send Money):</b> 01603599843</p>
+            </div>
+
+            <select id="paymentMethod" required>
+                <option value="">পেমেন্ট মাধ্যম নির্বাচন করুন</option>
+                <option value="Bkash">bKash</option>
+                <option value="Nagad">Nagad</option>
+            </select>
+            
+            <input type="text" id="transactionId" placeholder="Transaction ID" required>
+
+            <button type="submit">রেজিস্ট্রেশন সাবমিট করুন</button>
+        </form>
+    </section>
+
+    <!-- REGISTRATION STATUS -->
+    <section class="status-section">
+        <h2>📌 Registration Status</h2>
+        <p>
+            রেজিস্ট্রেশন সাবমিট করার পরে আপনার টিম <b>Pending</b> অবস্থায় থাকবে। 
+            Admin Approve করার পর Approved Teams লিস্টে দেখানো হবে।
+        </p>
+    </section>
+
+    <!-- APPROVED TEAMS -->
+    <section class="approved-teams">
+        <h2>✅ Approved Teams</h2>
+        <div id="approvedTeams">
+            <p>Approved Team পাওয়া যায়নি।</p>
+        </div>
+    </section>
+
+    <!-- RULES -->
+    <section class="rules">
+        <h2>📜 Tournament Rules</h2>
+        <ul>
+            <li>Room e join korar sathe sathe #Team Name drop korte hobe.</li>
+            <li>Solo/Duo room e join kora jabe na. Join korle kick dewa hobe.</li>
+            <li>Room e ojotha mic open rakha jabe na.</li>
+            <li>Room e entry newar por nijer slot e thakte hobe. Slot change kora jabe na.</li>
+            <li>Sob map download rakha badhyotamulok.</li>
+            <li>Prottek match er screenshot rakhte hobe.</li>
+            <li>Account level minimum 40 hote hobe.</li>
+            <li>Random player invite kora jabe na.</li>
+            <li>Vehicle diye damage dile (-10) point kata hobe.</li>
+            <li>Misha ebong Raiden character allowed na.</li>
+            <li>Jekono somossa hole Host ke message korte hobe.</li>
+        </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <h2>📞 Contact</h2>
+        <div class="contact-box">
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: 01780880005</p>
+            <p>Empire Society Official Tournament</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>👑 Empire Society</h3>
+        <p>Free Fire Community Tournament</p>
+        <p>Season 2 Official Website</p>
+        <div class="dev-credit">
+            <p>Made With ❤️ By <span>Jisan</span></p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://chat.whatsapp.com/FIeTE0CA8nBAP8PPnQVRpR" target="_blank" class="floating-whatsapp" aria-label="Join WhatsApp Group">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
