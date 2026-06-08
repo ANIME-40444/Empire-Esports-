@@ -1,53 +1,312 @@
-/* Floating WhatsApp Button Styling */
-.floating-whatsapp {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 35px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-.floating-whatsapp:hover {
-    background-color: #128c7e;
-    transform: scale(1.1);
+body{
+    background:#0d0d0d;
+    color:#fff;
+    overflow-x:hidden;
 }
 
-/* Footer Styling Updates */
-footer {
-    background-color: #111;
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
-    border-top: 2px solid #ff4a5a; /* Gaming Theme Color Line */
+/* HERO */
+
+.hero{
+    height:350px;
+    background:linear-gradient(
+    rgba(0,0,0,.7),
+    rgba(0,0,0,.7)),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-footer h3 {
-    margin-bottom: 10px;
-    color: #ff4a5a;
+.overlay h1{
+    font-size:50px;
+    color:#ffd700;
+    text-shadow:0 0 20px #ffd700;
 }
 
-.dev-credit {
-    margin-top: 15px;
-    font-size: 0.95rem;
-    border-top: 1px solid #222;
-    padding-top: 15px;
+.overlay h2{
+    font-size:35px;
+    margin-top:10px;
 }
 
-.dev-credit span {
-    color: #ff4a5a;
-    font-weight: bold;
-    letter-spacing: 1px;
+.overlay p{
+    margin-top:10px;
+    color:#ccc;
+}
+
+/* SECTIONS */
+
+section{
+    padding:50px 20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#ffd700;
+}
+
+/* COUNTDOWN */
+
+.countdown-box{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.time-box{
+    background:#171717;
+    width:110px;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid #2c2c2c;
+}
+
+.time-box span{
+    font-size:35px;
+    color:#ffd700;
+    font-weight:bold;
+}
+
+.match-date{
+    text-align:center;
+    margin-top:20px;
+    color:#bbb;
+}
+
+/* PRIZE */
+
+.prize-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#151515;
+    border:1px solid #2d2d2d;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 15px rgba(255,215,0,.3);
+}
+
+.card h3{
+    color:#ffd700;
+    margin-bottom:10px;
+}
+
+/* GROUPS */
+
+.group-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.group-card{
+    background:#151515;
+    border:1px solid #333;
+    padding:25px;
+    text-align:center;
+    border-radius:18px;
+}
+
+.group-card h3{
+    color:#ffd700;
+}
+
+/* FORM */
+
+form{
+    background:#151515;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid #2d2d2d;
+}
+
+form h3{
+    color:#ffd700;
+    margin:20px 0 10px;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:12px;
+    background:#222;
+    color:white;
+    font-size:15px;
+}
+
+input:focus,
+select:focus{
+    outline:2px solid #ffd700;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#ffd700;
+    color:#000;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#ffea00;
+    transform:scale(1.02);
+}
+
+/* PAYMENT */
+
+.payment-box{
+    background:#1c1c1c;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.text-pink{
+    color:#ff4fa0;
+}
+
+.text-orange{
+    color:#ff8c00;
+}
+
+/* APPROVED TEAMS */
+
+#approvedTeams{
+    display:grid;
+    gap:15px;
+}
+
+.team-card{
+    background:#151515;
+    border:1px solid #333;
+    padding:20px;
+    border-radius:15px;
+}
+
+.team-card h3{
+    color:#ffd700;
+    margin-bottom:10px;
+}
+
+/* RULES */
+
+.rules ul{
+    list-style:none;
+}
+
+.rules li{
+    background:#151515;
+    margin-bottom:12px;
+    padding:15px;
+    border-left:5px solid #ffd700;
+    border-radius:10px;
+}
+
+/* CONTACT */
+
+.contact-box{
+    background:#151515;
+    padding:20px;
+    text-align:center;
+    border-radius:15px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111;
+    text-align:center;
+    padding:30px;
+    margin-top:50px;
+    border-top:2px solid #ffd700;
+}
+
+footer h3{
+    color:#ffd700;
+}
+
+.dev-credit{
+    margin-top:15px;
+}
+
+.dev-credit span{
+    color:#ffd700;
+    font-weight:bold;
+}
+
+/* WHATSAPP FLOAT */
+
+.floating-whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:30px;
+    box-shadow:0 0 20px rgba(37,211,102,.4);
+    z-index:999;
+}
+
+.floating-whatsapp:hover{
+    transform:scale(1.1);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .overlay h1{
+        font-size:35px;
+    }
+
+    .overlay h2{
+        font-size:25px;
+    }
+
+    .hero{
+        height:280px;
+    }
+
+    .time-box{
+        width:85px;
+    }
+
 }
