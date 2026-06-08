@@ -210,6 +210,9 @@ form.reset();
 
 loadGroupCounts();
 
+// নতুন টিম সাবমিট হওয়ার পর যেন এপ্রুভড লিস্টও রিলোড হয়
+loadApprovedTeams();
+
 }catch(error){
 
 console.error(error);
@@ -232,109 +235,101 @@ submitBtn.innerText =
 
 
 // =======================
-// APPROVED TEAMS
+// APPROVED TEAMS (REPLACED WITH NEW FUNCTION)
 // =======================
 
 async function loadApprovedTeams(){
 
-const container =
-document.getElementById(
-"approvedTeams"
-);
+const groupAContainer =
+document.getElementById("groupATeamsList");
 
-if(!container) return;
+const groupBContainer =
+document.getElementById("groupBTeamsList");
 
-container.innerHTML = "";
+if(!groupAContainer || !groupBContainer)
+return;
+
+groupAContainer.innerHTML = "";
+groupBContainer.innerHTML = "";
 
 const q = query(
 collection(db,"teams"),
-where(
-"status",
-"==",
-"approved"
-)
+where("status","==","approved")
 );
 
-const snapshot =
-await getDocs(q);
+const snapshot = await getDocs(q);
 
 if(snapshot.empty){
 
-container.innerHTML =
+groupAContainer.innerHTML =
+"<p>No Approved Team Yet</p>";
 
-`
-<div class="team-card">
-
-<p>
-এখনো কোনো অনুমোদিত
-টিম নেই
-</p>
-
-</div>
-`;
+groupBContainer.innerHTML =
+"<p>No Approved Team Yet</p>";
 
 return;
 
 }
+
+// কোন গ্রুপে টিম আছে কি না তা নিখুঁতভাবে চেক করার ট্র্যাকার
+let hasGroupA = false;
+let hasGroupB = false;
 
 snapshot.forEach((doc)=>{
 
 const team = doc.data();
 
 const hiddenPhone =
+(team.phone || "").substring(0,5)
++ "*****";
 
-team.phone.substring(0,5)
-+
-"*****";
-
-container.innerHTML +=
-
-`
+const card = `
 
 <div class="team-card">
 
-<h3>
-🏆 ${team.squadName}
-</h3>
+<h3>🏆 ${team.squadName}</h3>
 
-<p>
-📱 ${hiddenPhone}
-</p>
+<p>📱 ${hiddenPhone}</p>
 
-<p>
-👥 Group:
-${team.group}
-</p>
+<p>👥 Group: ${team.group}</p>
 
-<p>
-Player 1:
-${team.player1}
-</p>
+<p>Player 1: ${team.player1}</p>
 
-<p>
-Player 2:
-${team.player2}
-</p>
+<p>Player 2: ${team.player2}</p>
 
-<p>
-Player 3:
-${team.player3}
-</p>
+<p>Player 3: ${team.player3}</p>
 
-<p>
-Player 4:
-${team.player4}
-</p>
+<p>Player 4: ${team.player4}</p>
 
-<p>
-✅ অনুমোদিত টিম
-</p>
+<p>✅ Approved Team</p>
 
 </div>
 
 `;
 
+if(team.group === "A"){
+
+groupAContainer.innerHTML += card;
+hasGroupA = true;
+
+}
+
+if(team.group === "B"){
+
+groupBContainer.innerHTML += card;
+hasGroupB = true;
+
+}
+
 });
+
+// লুপ শেষ হওয়ার পর যদি কোনো গ্রুপে একটাও টিম না থাকে, তবে মেসেজটি দেখাবে
+if(!hasGroupA){
+groupAContainer.innerHTML = "<p>No Approved Team Yet</p>";
+}
+if(!hasGroupB){
+groupBContainer.innerHTML = "<p>No Approved Team Yet</p>";
+}
 
 }
 
