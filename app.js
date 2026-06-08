@@ -3,151 +3,346 @@ import { db } from "./firebase.js";
 import {
   collection,
   addDoc,
-  serverTimestamp,
+  getDocs,
   query,
   where,
-  getDocs
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 
-// =====================
-// TEAM REGISTRATION
-// =====================
+// =======================
+// COUNTDOWN TIMER
+// =======================
 
-const form = document.getElementById("teamForm");
+const targetDate =
+new Date("June 12, 2026 16:00:00").getTime();
 
-if (form) {
+setInterval(() => {
 
-  form.addEventListener("submit", async (e) => {
+const now = new Date().getTime();
 
-    e.preventDefault();
+const distance = targetDate - now;
 
-    const submitBtn = form.querySelector("button");
+const days =
+Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Submitting...";
+const hours =
+Math.floor(
+(distance % (1000 * 60 * 60 * 24))
+/
+(1000 * 60 * 60)
+);
 
-    try {
+const minutes =
+Math.floor(
+(distance % (1000 * 60 * 60))
+/
+(1000 * 60)
+);
 
-      await addDoc(collection(db, "teams"), {
+const seconds =
+Math.floor(
+(distance % (1000 * 60))
+/
+1000
+);
 
-        squadName: document.getElementById("squadName").value,
+if(document.getElementById("days")){
+document.getElementById("days").innerText = days;
+document.getElementById("hours").innerText = hours;
+document.getElementById("minutes").innerText = minutes;
+document.getElementById("seconds").innerText = seconds;
+}
 
-        phone: document.getElementById("phone").value,
+},1000);
 
-        player1: document.getElementById("player1").value,
 
-        player2: document.getElementById("player2").value,
+// =======================
+// GROUP COUNTS
+// =======================
 
-        player3: document.getElementById("player3").value,
+async function loadGroupCounts(){
 
-        player4: document.getElementById("player4").value,
+const snapshot =
+await getDocs(collection(db,"teams"));
 
-        paymentMethod: document.getElementById("paymentMethod").value,
+let groupA = 0;
+let groupB = 0;
 
-        transactionId: document.getElementById("transactionId").value,
+snapshot.forEach((doc)=>{
 
-        status: "pending",
+const team = doc.data();
 
-        createdAt: serverTimestamp()
+if(team.group === "A")
+groupA++;
 
-      });
+if(team.group === "B")
+groupB++;
 
-      alert(
-        "✅ Registration Submitted Successfully!\n\nStatus: Pending\nAdmin khub taratari review korbe."
-      );
+});
 
-      form.reset();
+if(document.getElementById("groupACount")){
+document.getElementById("groupACount").innerText =
+groupA;
+}
 
-      loadApprovedTeams();
+if(document.getElementById("groupBCount")){
+document.getElementById("groupBCount").innerText =
+groupB;
+}
 
-    } catch (error) {
+const groupSelect =
+document.getElementById("group");
 
-      console.error(error);
+if(groupSelect){
 
-      alert(
-        "❌ Submit Failed!\nPlease Try Again."
-      );
+const optionA =
+groupSelect.querySelector(
+'option[value="A"]'
+);
 
-    }
+const optionB =
+groupSelect.querySelector(
+'option[value="B"]'
+);
 
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit Registration";
+if(groupA >= 12){
 
-  });
+optionA.disabled = true;
+optionA.textContent =
+"GROUP A (FULL)";
+
+}
+
+if(groupB >= 12){
+
+optionB.disabled = true;
+optionB.textContent =
+"GROUP B (FULL)";
+
+}
+
+if(groupA >= 12 && groupB >= 12){
+
+alert(
+"Registration Closed!\nAll Slots Filled."
+);
+
+document.getElementById("teamForm")
+.style.display = "none";
+
+}
+
+}
 
 }
 
 
-// =====================
+// =======================
+// TEAM SUBMIT
+// =======================
+
+const form =
+document.getElementById("teamForm");
+
+if(form){
+
+form.addEventListener(
+"submit",
+async(e)=>{
+
+e.preventDefault();
+
+const submitBtn =
+form.querySelector("button");
+
+submitBtn.disabled = true;
+
+submitBtn.innerText =
+"Submitting...";
+
+try{
+
+await addDoc(
+collection(db,"teams"),
+{
+
+squadName:
+document.getElementById("squadName").value,
+
+phone:
+document.getElementById("phone").value,
+
+group:
+document.getElementById("group").value,
+
+player1:
+document.getElementById("player1").value,
+
+player2:
+document.getElementById("player2").value,
+
+player3:
+document.getElementById("player3").value,
+
+player4:
+document.getElementById("player4").value,
+
+paymentMethod:
+document.getElementById("paymentMethod").value,
+
+transactionId:
+document.getElementById("transactionId").value,
+
+status:"pending",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+alert(
+"✅ Registration Submitted!\n\nYour Team Status: Pending"
+);
+
+form.reset();
+
+loadGroupCounts();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"❌ Submit Failed!"
+);
+
+}
+
+submitBtn.disabled = false;
+
+submitBtn.innerText =
+"রেজিস্ট্রেশন সাবমিট করুন";
+
+}
+);
+
+}
+
+
+// =======================
 // APPROVED TEAMS
-// =====================
+// =======================
 
-async function loadApprovedTeams() {
+async function loadApprovedTeams(){
 
-  const approvedContainer =
-    document.getElementById("approvedTeams");
+const container =
+document.getElementById(
+"approvedTeams"
+);
 
-  if (!approvedContainer) return;
+if(!container) return;
 
-  approvedContainer.innerHTML = "";
+container.innerHTML = "";
 
-  try {
+const q = query(
+collection(db,"teams"),
+where(
+"status",
+"==",
+"approved"
+)
+);
 
-    const q = query(
-      collection(db, "teams"),
-      where("status", "==", "approved")
-    );
+const snapshot =
+await getDocs(q);
 
-    const snapshot = await getDocs(q);
+if(snapshot.empty){
 
-    if (snapshot.empty) {
+container.innerHTML =
 
-      approvedContainer.innerHTML = `
-        <p>No approved teams yet.</p>
-      `;
+`
+<div class="team-card">
 
-      return;
-    }
+<p>
+এখনো কোনো অনুমোদিত
+টিম নেই
+</p>
 
-    snapshot.forEach((teamDoc) => {
+</div>
+`;
 
-      const team = teamDoc.data();
-
-      approvedContainer.innerHTML += `
-
-        <div class="team-card">
-
-          <h3>🏆 ${team.squadName}</h3>
-
-          <p><strong>Mobile:</strong> ${team.phone}</p>
-
-          <p><strong>Player 1:</strong> ${team.player1}</p>
-
-          <p><strong>Player 2:</strong> ${team.player2}</p>
-
-          <p><strong>Player 3:</strong> ${team.player3}</p>
-
-          <p><strong>Player 4:</strong> ${team.player4}</p>
-
-          <p>✅ Approved Team</p>
-
-        </div>
-
-      `;
-
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    approvedContainer.innerHTML = `
-      <p>Failed to load approved teams.</p>
-    `;
-
-  }
+return;
 
 }
+
+snapshot.forEach((doc)=>{
+
+const team = doc.data();
+
+const hiddenPhone =
+
+team.phone.substring(0,5)
++
+"*****";
+
+container.innerHTML +=
+
+`
+
+<div class="team-card">
+
+<h3>
+🏆 ${team.squadName}
+</h3>
+
+<p>
+📱 ${hiddenPhone}
+</p>
+
+<p>
+👥 Group:
+${team.group}
+</p>
+
+<p>
+Player 1:
+${team.player1}
+</p>
+
+<p>
+Player 2:
+${team.player2}
+</p>
+
+<p>
+Player 3:
+${team.player3}
+</p>
+
+<p>
+Player 4:
+${team.player4}
+</p>
+
+<p>
+✅ অনুমোদিত টিম
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+// =======================
+// INITIAL LOAD
+// =======================
+
+loadGroupCounts();
 
 loadApprovedTeams();
