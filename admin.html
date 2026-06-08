@@ -10,87 +10,101 @@
 <style>
 
 .admin-header{
-text-align:center;
-padding:30px;
-background:#111;
-border-bottom:2px solid gold;
+    text-align:center;
+    padding:30px;
+    background:#111;
+    border-bottom:2px solid gold;
 }
 
 .admin-header h1{
-color:gold;
+    color:gold;
+}
+
+.admin-header p{
+    color:#ccc;
+    margin-top:10px;
 }
 
 .stats{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    padding:20px;
 }
 
 .stat-box{
-background:#151515;
-padding:20px;
-border-radius:12px;
-min-width:180px;
-text-align:center;
-border:1px solid #333;
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid #333;
 }
 
 .stat-box h2{
-color:gold;
+    color:gold;
+    font-size:35px;
 }
 
 .team-list{
-padding:20px;
-max-width:1200px;
-margin:auto;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.team-list h2{
+    text-align:center;
+    color:gold;
+    margin-bottom:25px;
 }
 
 .team-card{
-background:#151515;
-padding:20px;
-margin-bottom:15px;
-border-radius:12px;
-border:1px solid #333;
+    background:#111;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
 }
 
 .team-card h3{
-color:gold;
-margin-bottom:10px;
+    color:gold;
+    margin-bottom:15px;
+}
+
+.team-card p{
+    margin:8px 0;
 }
 
 .btn-group{
-display:flex;
-gap:10px;
-margin-top:15px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.approve-btn,
+.reject-btn,
+.delete-btn{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 .approve-btn{
-background:#28a745;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-cursor:pointer;
+    background:#28a745;
+    color:white;
 }
 
 .reject-btn{
-background:#dc3545;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-cursor:pointer;
+    background:#dc3545;
+    color:white;
 }
 
 .delete-btn{
-background:#555;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-cursor:pointer;
+    background:#555;
+    color:white;
 }
 
 </style>
@@ -103,7 +117,7 @@ cursor:pointer;
 
 <h1>👑 Empire Esports Admin Panel</h1>
 
-<p>Season 2 Management Dashboard</p>
+<p>Season 2 Tournament Dashboard</p>
 
 </div>
 
@@ -116,26 +130,24 @@ cursor:pointer;
 
 <div class="stat-box">
 <h2 id="pendingTeams">0</h2>
-<p>Pending</p>
+<p>Pending Teams</p>
 </div>
 
 <div class="stat-box">
 <h2 id="approvedTeams">0</h2>
-<p>Approved</p>
+<p>Approved Teams</p>
 </div>
 
 <div class="stat-box">
 <h2 id="rejectedTeams">0</h2>
-<p>Rejected</p>
+<p>Rejected Teams</p>
 </div>
 
 </div>
 
 <div class="team-list">
 
-<h2 style="text-align:center;color:gold;margin-bottom:20px;">
-Pending Team Requests
-</h2>
+<h2>Team Requests</h2>
 
 <div id="teamContainer">
 
