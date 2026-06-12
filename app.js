@@ -15,7 +15,7 @@ import {
 // =======================
 
 const targetDate =
-new Date("June 12, 2026 16:00:00").getTime();
+new Date("June 19, 2026 16:00:00").getTime();
 
 setInterval(() => {
 
