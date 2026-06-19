@@ -3,19 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Empire Match Schedule</title>
+<title>EMPIRE ESPORTS - Semi Final</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#0f172a;
-color:white;
+background:linear-gradient(135deg,#020617,#0f172a,#111827);
+color:#fff;
 padding:20px;
 }
 
@@ -26,65 +28,83 @@ margin:auto;
 
 .header{
 text-align:center;
-margin-bottom:20px;
+margin-bottom:30px;
 }
 
 .header h1{
-color:#00e5ff;
-margin-bottom:10px;
+font-size:2.8rem;
+font-weight:800;
+background:linear-gradient(90deg,#00e5ff,#00ff88);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.header p{
+color:#94a3b8;
+margin-top:8px;
 }
 
 .card{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-margin-bottom:15px;
-border:1px solid #334155;
+background:#111827;
+border:1px solid rgba(0,229,255,.2);
+border-radius:20px;
+padding:25px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,229,255,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
 }
 
 .match{
-font-size:22px;
-font-weight:bold;
+font-size:1.5rem;
+font-weight:700;
 margin-bottom:10px;
 }
 
 .time{
 color:#94a3b8;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .countdown{
-font-size:20px;
-font-weight:bold;
+background:#06121f;
+border:1px solid #00e5ff;
+padding:12px;
+border-radius:12px;
+text-align:center;
+font-size:1.1rem;
+font-weight:700;
 color:#00ff88;
 }
 
 .live{
 color:#ff4444;
-font-size:22px;
-font-weight:bold;
+animation:pulse 1s infinite;
 }
 
-.prize{
+.section{
 background:#111827;
-padding:15px;
-border-radius:15px;
+padding:25px;
+border-radius:20px;
 margin-top:20px;
 }
 
-.rules{
-background:#111827;
-padding:15px;
-border-radius:15px;
-margin-top:20px;
+.section h2{
+color:#00e5ff;
+margin-bottom:15px;
 }
 
-ul{
-padding-left:20px;
-}
-
-li{
+.section p{
 margin:8px 0;
+}
+
+@keyframes pulse{
+50%{
+opacity:.4;
+}
 }
 </style>
 </head>
@@ -93,85 +113,66 @@ margin:8px 0;
 <div class="container">
 
 <div class="header">
-<h1>🏆 EMPIRE MATCH SCHEDULE</h1>
-<h3>📅 19 June 2026</h3>
+<h1>🏆 EMPIRE ESPORTS</h1>
+<p>SEMI FINAL MATCHES</p>
+<p>📅 20 June 2026</p>
 </div>
 
 <div class="card">
-<div class="match">White Squad 🆚 Legaz</div>
-<div class="time">5:00 PM</div>
+<div class="match">⚔️ White Squad VS Shadow</div>
+<div class="time">🕔 5:00 PM</div>
 <div class="countdown" id="match1"></div>
 </div>
 
 <div class="card">
-<div class="match">Elite Assassins 🆚 Team Mehedi</div>
-<div class="time">5:30 PM</div>
+<div class="match">⚔️ Elite Assassins VS Black Devils</div>
+<div class="time">🕠 5:30 PM</div>
 <div class="countdown" id="match2"></div>
 </div>
 
-<div class="card">
-<div class="match">Shadow 🆚 Fire Fox</div>
-<div class="time">6:00 PM</div>
-<div class="countdown" id="match3"></div>
-</div>
-
-<div class="card">
-<div class="match">RDX 🆚 Black Devils</div>
-<div class="time">6:30 PM</div>
-<div class="countdown" id="match4"></div>
-</div>
-
-<div class="prize">
-<h2>💰 Prize Pool</h2>
-<br>
+<div class="section">
+<h2>💰 Tournament Prize Pool</h2>
 <p>🥇 Champion — 300 BDT</p>
 <p>🥈 Runner-Up — 100 BDT</p>
 </div>
 
-<div class="rules">
-<h2>📜 Rules</h2>
-<ul>
-<li>All Teams Must Be Ready 15 Minutes Before Their Match</li>
-<li>No Hack / No Emulator</li>
-<li>Host Decision Is Final</li>
-<li>Any Form Of Cheating Will Result In Disqualification</li>
-</ul>
+<div class="section">
+<h2>📜 Semi Final Rules</h2>
+<p>✅ All Teams Must Be Ready 15 Minutes Before Match.</p>
+<p>✅ No Hack / No Emulator.</p>
+<p>✅ Host Decision Is Final.</p>
+<p>✅ Any Form Of Cheating Will Result In Disqualification.</p>
 </div>
 
 </div>
 
 <script>
-function countdown(id, targetTime){
+function countdown(id,target){
 
 function update(){
+let now=new Date().getTime();
+let distance=target-now;
 
-const now = new Date().getTime();
-const distance = targetTime - now;
-
-if(distance <= 0){
-document.getElementById(id).innerHTML =
+if(distance<=0){
+document.getElementById(id).innerHTML=
 '<span class="live">🔴 MATCH LIVE NOW</span>';
 return;
 }
 
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-const seconds = Math.floor((distance%(1000*60))/1000);
+let h=Math.floor(distance/(1000*60*60));
+let m=Math.floor((distance%(1000*60*60))/(1000*60));
+let s=Math.floor((distance%(1000*60))/1000);
 
-document.getElementById(id).innerHTML =
-`⏳ ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
+document.getElementById(id).innerHTML=
+`⏳ ${h}h ${m}m ${s}s`;
 }
 
 update();
 setInterval(update,1000);
 }
 
-countdown("match1", new Date("June 19, 2026 17:00:00").getTime());
-countdown("match2", new Date("June 19, 2026 17:30:00").getTime());
-countdown("match3", new Date("June 19, 2026 18:00:00").getTime());
-countdown("match4", new Date("June 19, 2026 18:30:00").getTime());
+countdown("match1",new Date("June 20, 2026 17:00:00").getTime());
+countdown("match2",new Date("June 20, 2026 17:30:00").getTime());
 </script>
 
 </body>
