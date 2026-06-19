@@ -1,207 +1,178 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empire Esports Season 2</title>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empire Match Schedule</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.header{
+text-align:center;
+margin-bottom:20px;
+}
+
+.header h1{
+color:#00e5ff;
+margin-bottom:10px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+border:1px solid #334155;
+}
+
+.match{
+font-size:22px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.time{
+color:#94a3b8;
+margin-bottom:10px;
+}
+
+.countdown{
+font-size:20px;
+font-weight:bold;
+color:#00ff88;
+}
+
+.live{
+color:#ff4444;
+font-size:22px;
+font-weight:bold;
+}
+
+.prize{
+background:#111827;
+padding:15px;
+border-radius:15px;
+margin-top:20px;
+}
+
+.rules{
+background:#111827;
+padding:15px;
+border-radius:15px;
+margin-top:20px;
+}
+
+ul{
+padding-left:20px;
+}
+
+li{
+margin:8px 0;
+}
+</style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="overlay">
-            <h1>EMPIRE ESPORTS</h1>
-            <h2>SEASON 2</h2>
-            <p>FREE FIRE SQUAD TOURNAMENT</p>
-        </div>
-    </header>
+<div class="container">
 
-    <!-- COUNTDOWN -->
-    <section class="countdown-section" style="text-align: center;">
-        <h2>⏳ ম্যাচ শুরু হতে বাকি</h2>
-        <div class="countdown-box">
-            <div class="time-box">
-                <span id="days">00</span>
-                <p>দিন</p>
-            </div>
-            <div class="time-box">
-                <span id="hours">00</span>
-                <p>ঘণ্টা</p>
-            </div>
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <p>মিনিট</p>
-            </div>
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <p>সেকেন্ড</p>
-            </div>
-        </div>
-        
-        <!-- আপডেট করা ম্যাচ টাইমিং নোটিশ -->
-        <p class="match-date" style="margin-top: 20px; font-weight: bold; font-size: 1.1rem; line-height: 1.8;">
-            <span style="color:#ffd700;">🔥 Group A: 19 June 2026 | 🕓 4:00 PM</span><br>
-            <span style="color:#00ff88;">🔥 Group B: 21 June 2026 | 🕓 4:00 PM</span>
-        </p>
-    </section>
+<div class="header">
+<h1>🏆 EMPIRE MATCH SCHEDULE</h1>
+<h3>📅 19 June 2026</h3>
+</div>
 
-    <!-- PRIZE POOL -->
-    <section class="prize-section">
-        <h2>🏆 পুরস্কার তালিকা</h2>
-        <div class="prize-grid">
-            <div class="card total-pool">
-                <h3>মোট প্রাইজ পুল</h3>
-                <p>1300 BDT</p>
-            </div>
-            <div class="card">
-                <h3>Champion 🥇</h3>
-                <p>600 BDT</p>
-            </div>
-            <div class="card">
-                <h3>1st Runner-Up 🥈</h3>
-                <p>400 BDT</p>
-            </div>
-            <div class="card">
-                <h3>2nd Runner-Up 🥉</h3>
-                <p>200 BDT</p>
-            </div>
-            <div class="card">
-                <h3>3rd Runner-Up</h3>
-                <p>100 BDT</p>
-            </div>
-            <div class="card entry-fee">
-                <h3>এন্ট্রি ফি 🎟️</h3>
-                <p>60 TK</p>
-            </div>
-        </div>
-    </section>
+<div class="card">
+<div class="match">White Squad 🆚 Legaz</div>
+<div class="time">5:00 PM</div>
+<div class="countdown" id="match1"></div>
+</div>
 
-    <!-- GROUP STATUS -->
-    <section class="group-section">
-        <h2>📊 গ্রুপ স্ট্যাটাস</h2>
-        <div class="group-container">
-            <div class="group-card">
-                <h3>GROUP A</h3>
-                <p>টিম: <span id="groupACount">0</span>/12</p>
-            </div>
-            <div class="group-card">
-                <h3>GROUP B</h3>
-                <p>টিম: <span id="groupBCount">0</span>/12</p>
-            </div>
-        </div>
-    </section>
+<div class="card">
+<div class="match">Elite Assassins 🆚 Team Mehedi</div>
+<div class="time">5:30 PM</div>
+<div class="countdown" id="match2"></div>
+</div>
 
-    <!-- REGISTRATION -->
-    <section class="register-section">
-        <h2>🔥 Join Your Squad</h2>
-        <form id="teamForm">
-            <input type="text" id="squadName" placeholder="স্কোয়াড নাম" required>
-            <input type="text" id="phone" placeholder="মোবাইল নাম্বার" required>
-            
-            <select id="group" required>
-                <option value="">গ্রুপ নির্বাচন করুন</option>
-                <option value="A">GROUP A</option>
-                <option value="B">GROUP B</option>
-            </select>
+<div class="card">
+<div class="match">Shadow 🆚 Fire Fox</div>
+<div class="time">6:00 PM</div>
+<div class="countdown" id="match3"></div>
+</div>
 
-            <h3>👥 প্লেয়ারদের FF I'D নাম</h3>
-            <input type="text" id="player1" placeholder="Player 1 Name (Leader)" required>
-            <input type="text" id="player2" placeholder="Player 2 Name" required>
-            <input type="text" id="player3" placeholder="Player 3 Name" required>
-            <input type="text" id="player4" placeholder="Player 4 Name" required>
+<div class="card">
+<div class="match">RDX 🆚 Black Devils</div>
+<div class="time">6:30 PM</div>
+<div class="countdown" id="match4"></div>
+</div>
 
-            <h3>💳 পেমেন্ট তথ্য</h3>
-            <div class="payment-box">
-                <p><b><i class="text-pink">bKash</i> (Send Money):</b> 01305736690</p>
-                <p><b><i class="text-orange">Nagad</i> (Send Money):</b> 01603599843</p>
-            </div>
+<div class="prize">
+<h2>💰 Prize Pool</h2>
+<br>
+<p>🥇 Champion — 300 BDT</p>
+<p>🥈 Runner-Up — 100 BDT</p>
+</div>
 
-            <select id="paymentMethod" required>
-                <option value="">পেমেন্ট মাধ্যম নির্বাচন করুন</option>
-                <option value="Bkash">bKash</option>
-                <option value="Nagad">Nagad</option>
-            </select>
-            
-            <input type="text" id="transactionId" placeholder="Transaction ID" required>
+<div class="rules">
+<h2>📜 Rules</h2>
+<ul>
+<li>All Teams Must Be Ready 15 Minutes Before Their Match</li>
+<li>No Hack / No Emulator</li>
+<li>Host Decision Is Final</li>
+<li>Any Form Of Cheating Will Result In Disqualification</li>
+</ul>
+</div>
 
-            <button type="submit">রেজিস্ট্রেশন সাবমিট করুন</button>
-        </form>
-    </section>
+</div>
 
-    <!-- REGISTRATION STATUS -->
-    <section class="status-section">
-        <h2>📌 Registration Status</h2>
-        <p>
-            রেজিস্ট্রেশন সাবমিট করার পরে আপনার টিম <b>Pending</b> অবস্থায় থাকবে। 
-            Admin Approve করার পর Approved Teams লিস্টে দেখানো হবে।
-        </p>
-    </section>
+<script>
+function countdown(id, targetTime){
 
-    <!-- APPROVED TEAMS -->
-    <section class="approved-teams">
-        <h2>✅ Approved Teams</h2>
-        <div class="group-approved">
-            <h3>🔥 GROUP A</h3>
-            <div id="groupATeamsList">
-                <p>No Approved Team Yet</p>
-            </div>
-        </div>
-        <br>
-        <div class="group-approved">
-            <h3>🔥 GROUP B</h3>
-            <div id="groupBTeamsList">
-                <p>No Approved Team Yet</p>
-            </div>
-        </div>
-    </section>
+function update(){
 
-    <!-- RULES (বাংলায় রূপান্তরিত) -->
-    <section class="rules">
-        <h2>📜 Tournament Rules</h2>
-        <ul>
-            <li>রূমে (Room) জয়েন করার সাথে সাথে চ্যাটে নিজের #Team Name লিখতে হবে।</li>
-            <li>সোলো (Solo) বা ডুও (Duo) হয়ে রূমে জয়েন করা যাবে না। জয়েন করলে কিক দেওয়া হবে।</li>
-            <li>রূমে ওঝথা মাইক (Mic) ওপেন রাখা যাবে না।</li>
-            <li>রূমে এন্ট্রি নেওয়ার পর অবশ্যই নিজের স্লটে থাকতে হবে। স্লট পরিবর্তন করা যাবে না।</li>
-            <li>সবগুলো ম্যাপ (Map) ডাউনলোড রাখা বাধ্যতামূলক।</li>
-            <li>প্রত্যেকটি ম্যাচের স্ক্রিনশট (Screenshot) তুলে রাখতে হবে।</li>
-            <li>প্লেয়ারদের অ্যাকাউন্ট লেভেল সর্বনিম্ন ৪০ (40) হতে হবে।</li>
-            <li>র্যান্ডম কোনো প্লেয়ারকে ইনভাইট করা যাবে না।</li>
-            <li>গাড়ি (Vehicle) দিয়ে ড্যামেজ দিলে (-১০) পয়েন্ট কাটা হবে।</li>
-            <li>মিশা (Misha) এবং রাইডেন (Raiden) ক্যারেক্টার ব্যবহার করা যাবে না।</li>
-            <li>যেকোনো ধরণের সমস্যা হলে সরাসরি হোস্টকে (Host) মেসেজ করতে হবে।</li>
-        </ul>
-    </section>
+const now = new Date().getTime();
+const distance = targetTime - now;
 
-    <!-- CONTACT -->
-    <section class="contact-section">
-        <h2>📞 Contact</h2>
-        <div class="contact-box">
-            <p><i class="fab fa-whatsapp"></i> WhatsApp: 01780880005</p>
-            <p>Empire Society Official Tournament</p>
-        </div>
-    </section>
+if(distance <= 0){
+document.getElementById(id).innerHTML =
+'<span class="live">🔴 MATCH LIVE NOW</span>';
+return;
+}
 
-    <!-- FOOTER -->
-    <footer>
-        <h3>👑 Empire Society</h3>
-        <p>Free Fire Community Tournament</p>
-        <p>Season 2 Official Website</p>
-        <div class="dev-credit">
-            <p>Made With ❤️ By <span>Jisan</span></p>
-        </div>
-    </footer>
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
 
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="https://chat.whatsapp.com/FIeTE0CA8nBAP8PPnQVRpR" target="_blank" class="floating-whatsapp" aria-label="Join WhatsApp Group">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+document.getElementById(id).innerHTML =
+`⏳ ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    <!-- SCRIPTS -->
-    <script type="module" src="firebase.js"></script>
-    <script type="module" src="app.js"></script>
+}
+
+update();
+setInterval(update,1000);
+}
+
+countdown("match1", new Date("June 19, 2026 17:00:00").getTime());
+countdown("match2", new Date("June 19, 2026 17:30:00").getTime());
+countdown("match3", new Date("June 19, 2026 18:00:00").getTime());
+countdown("match4", new Date("June 19, 2026 18:30:00").getTime());
+</script>
+
 </body>
 </html>
