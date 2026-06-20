@@ -1,234 +1,185 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-:root{
-  --bg:#030712;
-  --card:#0f172a;
-  --red:#ff1a1a;
-  --red2:#ff4d4d;
-  --gold:#ffd700;
-  --white:#ffffff;
-}
-
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  font-family:'Poppins',sans-serif;
-  min-height:100vh;
-  color:white;
-  background:
-  radial-gradient(circle at top,#2a0000 0%,transparent 30%),
-  radial-gradient(circle at bottom,#001a1a 0%,transparent 30%),
-  linear-gradient(135deg,#000000,#050816,#000000);
-  overflow-x:hidden;
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+
+background:
+radial-gradient(circle at top,#ff6a00 0%,transparent 30%),
+radial-gradient(circle at bottom,#ff0000 0%,transparent 30%),
+linear-gradient(135deg,#000000,#050816,#000000);
+
+overflow:hidden;
 }
 
-.container{
-  width:90%;
-  max-width:1200px;
-  margin:auto;
+.card{
+position:relative;
+width:100%;
+max-width:900px;
+
+padding:60px 40px;
+
+text-align:center;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.04);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 0 50px rgba(255,106,0,.15),
+0 0 120px rgba(255,106,0,.08);
 }
 
-.hero{
-  text-align:center;
-  padding:80px 20px;
+.card::before{
+content:'';
+position:absolute;
+inset:0;
+
+border-radius:30px;
+
+padding:2px;
+
+background:linear-gradient(
+90deg,
+#ff6a00,
+#ffd700,
+#ff6a00
+);
+
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+
+-webkit-mask-composite:xor;
+mask-composite:exclude;
 }
 
-.final-badge{
-  display:inline-block;
-  padding:12px 30px;
-  border-radius:50px;
-  font-weight:700;
-  letter-spacing:2px;
-  border:1px solid var(--red);
-  color:var(--red2);
+.trophy{
+font-size:110px;
 
-  box-shadow:
-  0 0 15px var(--red),
-  0 0 40px var(--red);
+animation:float 3s ease-in-out infinite;
+
+filter:
+drop-shadow(0 0 15px #ffd700)
+drop-shadow(0 0 40px #ffd700);
 }
 
-.title{
-  font-family:'Orbitron',sans-serif;
-  font-size:4.5rem;
-  font-weight:900;
-  margin-top:25px;
+.winner{
+font-family:'Orbitron',sans-serif;
+font-size:4.5rem;
+font-weight:900;
 
-  background:linear-gradient(
-  90deg,
-  #fff,
-  #ff3b3b,
-  #fff
-  );
+margin-top:15px;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+color:#ffd700;
 
-.vs-box{
-  margin-top:50px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:40px;
-  flex-wrap:wrap;
+text-shadow:
+0 0 15px #ffd700,
+0 0 40px #ffd700,
+0 0 80px #ffd700;
 }
 
 .team{
-  min-width:300px;
-  padding:35px;
-  border-radius:25px;
+font-family:'Orbitron',sans-serif;
+font-size:3.5rem;
+font-weight:900;
 
-  background:rgba(255,255,255,.03);
-  backdrop-filter:blur(12px);
+margin-top:20px;
 
-  border:1px solid rgba(255,255,255,.1);
+color:#ff6a00;
 
-  box-shadow:
-  0 0 20px rgba(255,0,0,.15);
+text-shadow:
+0 0 15px #ff6a00,
+0 0 40px #ff6a00,
+0 0 80px #ff6a00;
 }
 
-.team h2{
-  font-family:'Orbitron',sans-serif;
-  font-size:2rem;
-  font-weight:800;
+.prize{
+margin-top:25px;
+
+font-size:2rem;
+font-weight:800;
+
+color:#00ff88;
+
+text-shadow:
+0 0 15px #00ff88,
+0 0 40px #00ff88;
 }
 
-.vs{
-  font-family:'Orbitron',sans-serif;
-  font-size:7rem;
-  font-weight:900;
-  color:var(--red);
+.msg{
+margin-top:25px;
 
-  text-shadow:
-  0 0 10px var(--red),
-  0 0 20px var(--red),
-  0 0 40px var(--red),
-  0 0 80px var(--red),
-  0 0 160px var(--red);
+font-size:1.1rem;
 
-  animation:vsGlow 1.5s infinite alternate;
+color:#cbd5e1;
 }
 
-.match-time{
-  margin-top:30px;
-  color:#b5b5b5;
-  font-size:1.1rem;
+.badge{
+display:inline-block;
+
+margin-bottom:20px;
+
+padding:10px 20px;
+
+border-radius:50px;
+
+background:rgba(255,215,0,.08);
+
+border:1px solid rgba(255,215,0,.3);
+
+color:#ffd700;
+
+font-weight:700;
+letter-spacing:2px;
 }
 
-.countdown{
-  margin-top:25px;
-  padding:18px;
-  border-radius:15px;
-  background:#08111f;
-  border:1px solid rgba(255,0,0,.3);
+@keyframes float{
 
-  font-size:1.3rem;
-  font-weight:700;
-  color:#00ff88;
-
-  box-shadow:
-  0 0 15px rgba(0,255,136,.2);
+0%{
+transform:translateY(0px);
 }
 
-.prize-box{
-  margin-top:60px;
-  padding:35px;
-  text-align:center;
-
-  background:rgba(255,255,255,.03);
-  border-radius:25px;
-  border:1px solid rgba(255,215,0,.2);
-
-  box-shadow:
-  0 0 25px rgba(255,215,0,.15);
+50%{
+transform:translateY(-15px);
 }
 
-.prize-box h2{
-  color:var(--gold);
-  margin-bottom:15px;
-  font-family:'Orbitron',sans-serif;
+100%{
+transform:translateY(0px);
 }
-
-.prize-money{
-  font-size:4rem;
-  font-weight:900;
-  color:var(--gold);
-
-  text-shadow:
-  0 0 15px #ffd700,
-  0 0 40px #ffd700;
-}
-
-.rules{
-  margin-top:40px;
-  background:rgba(255,255,255,.03);
-  padding:30px;
-  border-radius:25px;
-}
-
-.rules h2{
-  color:#00e5ff;
-  margin-bottom:20px;
-}
-
-.rules li{
-  list-style:none;
-  padding:15px;
-  margin-bottom:12px;
-  border-left:4px solid #00e5ff;
-  background:#111827;
-  border-radius:10px;
-}
-
-.footer{
-  text-align:center;
-  margin:40px 0;
-  color:#888;
-}
-
-@keyframes vsGlow{
-
-  from{
-    text-shadow:
-    0 0 15px var(--red),
-    0 0 30px var(--red),
-    0 0 60px var(--red);
-  }
-
-  to{
-    text-shadow:
-    0 0 25px var(--red),
-    0 0 60px var(--red),
-    0 0 120px var(--red),
-    0 0 220px var(--red);
-  }
 
 }
 
 @media(max-width:768px){
 
-  .title{
-    font-size:2.5rem;
-  }
+.winner{
+font-size:2.8rem;
+}
 
-  .vs{
-    font-size:4rem;
-  }
+.team{
+font-size:2.2rem;
+}
 
-  .team{
-    min-width:100%;
-  }
+.trophy{
+font-size:80px;
+}
 
-  .team h2{
-    font-size:1.5rem;
-  }
-
-  .prize-money{
-    font-size:2.8rem;
-  }
+.prize{
+font-size:1.5rem;
+}
 
 }
