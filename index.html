@@ -96,6 +96,40 @@ max-width:500px;
 margin:40px auto;
 }
 
+/* --- নতুন কাউন্টডাউন ডিজাইন গ্রিড --- */
+.timer-container{
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 25px;
+}
+
+.time-box{
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 45, 45, 0.3);
+padding: 15px;
+border-radius: 15px;
+min-width: 80px;
+box-shadow: 0 0 15px rgba(255, 0, 0, 0.05);
+}
+
+.time-box span{
+font-family: 'Orbitron', sans-serif;
+font-size: 2.2rem;
+font-weight: 800;
+color: #ff4d4d;
+display: block;
+text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.time-box p{
+font-size: 0.8rem;
+color: #9ca3af;
+text-transform: uppercase;
+margin-top: 5px;
+letter-spacing: 1px;
+}
+
 .live-match{
 display:flex;
 align-items:center;
@@ -156,6 +190,7 @@ margin:30px auto;
 padding:25px;
 background:#111827;
 border-radius:20px;
+text-align:center;
 }
 
 .rules h2{
@@ -170,6 +205,7 @@ padding:12px;
 background:#1f2937;
 border-left:4px solid #00e5ff;
 border-radius:10px;
+text-align: left;
 }
 
 @keyframes glow{
@@ -216,6 +252,7 @@ font-size:2.5rem;
 
 .vs{
 font-size:4rem;
+margin: 20px 0;
 }
 
 .team{
@@ -224,6 +261,15 @@ width:100%;
 
 .team h2{
 font-size:1.4rem;
+}
+
+.time-box{
+min-width: 65px;
+padding: 10px;
+}
+
+.time-box span{
+font-size: 1.6rem;
 }
 
 }
@@ -253,11 +299,34 @@ font-size:1.4rem;
 
 </div>
 
+<!-- COUNTDOWN SECTION -->
 <div class="countdown">
-<div class="live-match">
-<span class="live-dot"></span>
-🔴 MATCH LIVE NOW
-</div>
+    
+    <!-- নতুন টাইমার বক্স এলিমেন্ট -->
+    <div class="timer-container" id="timerBox">
+        <div class="time-box">
+            <span id="days">00</span>
+            <p>Days</p>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <p>Hours</p>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <p>Min</p>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <p>Sec</p>
+        </div>
+    </div>
+
+    <!-- লাইভ নোটিশ বক্স -->
+    <div class="live-match" id="liveStatus" style="display: none;">
+        <span class="live-dot"></span>
+        🔴 MATCH LIVE NOW
+    </div>
 </div>
 
 <div class="prize">
@@ -276,6 +345,38 @@ font-size:1.4rem;
 </div>
 
 </div>
+
+<!-- JAVASCRIPT FOR COUNTDOWN -->
+<script>
+const targetDate = new Date("June 20, 2026 19:30:00").getTime();
+
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    // দিন, ঘণ্টা, মিনিট ও সেকেন্ড এর ম্যাথ ক্যালকুলেশন
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // জিরো প্যাডিং (যেমন: ৫ সেকেন্ড থাকলে ০৫ দেখাবে)
+    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+    // কাউন্টডাউন শেষ হওয়ার পরের স্মার্ট সুইচ লজিক
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("timerBox").style.display = "none"; // টাইমার গায়েব হবে
+        document.getElementById("liveStatus").style.display = "flex"; // লাইভ বক্স অন হবে
+    } else {
+        document.getElementById("timerBox").style.display = "flex";
+        document.getElementById("liveStatus").style.display = "none";
+    }
+}, 1000);
+</script>
 
 </body>
 </html>
