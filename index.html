@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMPIRE ESPORTS CHAMPION</title>
+<title>EMPIRE ESPORTS GRAND FINAL</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -17,93 +17,366 @@ box-sizing:border-box;
 body{
 font-family:'Poppins',sans-serif;
 background:
-radial-gradient(circle at top,#ff6a00 0%,transparent 25%),
-linear-gradient(135deg,#000,#08111f,#000);
-color:#fff;
+radial-gradient(circle at top,#2a0000 0%,transparent 35%),
+linear-gradient(135deg,#000000,#050816,#000000);
+color:white;
 min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+overflow-x:hidden;
+}
+
+.hero{
 text-align:center;
+padding:80px 20px;
 }
 
-.card{
-max-width:800px;
-width:100%;
-padding:50px 30px;
-border-radius:30px;
-background:rgba(255,255,255,.04);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,.1);
-box-shadow:0 0 50px rgba(255,106,0,.25);
+.badge{
+display:inline-block;
+padding:12px 25px;
+border:1px solid #ff2d2d;
+border-radius:50px;
+color:#ff4d4d;
+font-weight:700;
+box-shadow:0 0 15px #ff0000;
 }
 
-.trophy{
-font-size:90px;
-animation:float 3s ease-in-out infinite;
-}
-
-.winner{
+.title{
 font-family:'Orbitron',sans-serif;
 font-size:4rem;
 font-weight:900;
-margin-top:15px;
-color:#ffd700;
-text-shadow:
-0 0 15px #ffd700,
-0 0 40px #ffd700;
+margin-top:25px;
+background:linear-gradient(90deg,#fff,#ff4444,#fff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+color:#9ca3af;
+margin-top:10px;
+}
+
+.vs-container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+margin-top:60px;
+flex-wrap:wrap;
 }
 
 .team{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.1);
+padding:35px;
+border-radius:25px;
+min-width:280px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,0,0,.15);
+}
+
+.team h2{
 font-family:'Orbitron',sans-serif;
-font-size:3rem;
-font-weight:800;
-margin-top:20px;
-color:#ff7b00;
+font-size:2rem;
+}
+
+.vs{
+font-family:'Orbitron',sans-serif;
+font-size:7rem;
+font-weight:900;
+color:#ff0000;
 text-shadow:
-0 0 15px #ff7b00,
-0 0 50px #ff7b00;
+0 0 10px #ff0000,
+0 0 25px #ff0000,
+0 0 50px #ff0000,
+0 0 100px #ff0000;
+animation:glow 1.5s infinite alternate;
+}
+
+.countdown{
+max-width:500px;
+margin:40px auto;
+}
+
+/* --- নতুন কাউন্টডাউন ডিজাইন গ্রিড --- */
+.timer-container{
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 25px;
+}
+
+.time-box{
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 45, 45, 0.3);
+padding: 15px;
+border-radius: 15px;
+min-width: 80px;
+box-shadow: 0 0 15px rgba(255, 0, 0, 0.05);
+}
+
+.time-box span{
+font-family: 'Orbitron', sans-serif;
+font-size: 2.2rem;
+font-weight: 800;
+color: #ff4d4d;
+display: block;
+text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.time-box p{
+font-size: 0.8rem;
+color: #9ca3af;
+text-transform: uppercase;
+margin-top: 5px;
+letter-spacing: 1px;
+}
+
+.live-match{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+padding:20px;
+border-radius:16px;
+background:rgba(255,0,0,.08);
+border:1px solid rgba(255,0,0,.4);
+color:#ff4d4d;
+font-size:1.6rem;
+font-weight:800;
+box-shadow:
+0 0 15px rgba(255,0,0,.4),
+0 0 40px rgba(255,0,0,.2);
+animation:livePulse 2s infinite;
+}
+
+.live-dot{
+width:14px;
+height:14px;
+border-radius:50%;
+background:#ff0000;
+box-shadow:
+0 0 10px #ff0000,
+0 0 25px #ff0000,
+0 0 50px #ff0000;
+animation:blink 1s infinite;
 }
 
 .prize{
-margin-top:25px;
-font-size:1.5rem;
-font-weight:700;
+max-width:600px;
+margin:40px auto;
+padding:30px;
+background:#111827;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,215,0,.2);
 }
 
-.msg{
-margin-top:20px;
-color:#cbd5e1;
-font-size:1.1rem;
+.prize h2{
+color:#ffd700;
+margin-bottom:15px;
 }
 
-@keyframes float{
+.money{
+font-size:3rem;
+font-weight:900;
+color:#ffd700;
+text-shadow:
+0 0 15px #ffd700,
+0 0 30px #ffd700;
+}
+
+.rules{
+max-width:700px;
+margin:30px auto;
+padding:25px;
+background:#111827;
+border-radius:20px;
+text-align:center;
+}
+
+.rules h2{
+color:#00e5ff;
+margin-bottom:15px;
+}
+
+.rules li{
+margin:10px 0;
+list-style:none;
+padding:12px;
+background:#1f2937;
+border-left:4px solid #00e5ff;
+border-radius:10px;
+text-align: left;
+}
+
+@keyframes glow{
+from{
+text-shadow:
+0 0 10px #ff0000,
+0 0 30px #ff0000;
+}
+to{
+text-shadow:
+0 0 20px #ff0000,
+0 0 60px #ff0000,
+0 0 120px #ff0000;
+}
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:.3;}
+100%{opacity:1;}
+}
+
+@keyframes livePulse{
+0%{
+box-shadow:
+0 0 15px rgba(255,0,0,.3);
+}
 50%{
-transform:translateY(-12px);
+box-shadow:
+0 0 35px rgba(255,0,0,.6),
+0 0 80px rgba(255,0,0,.3);
 }
+100%{
+box-shadow:
+0 0 15px rgba(255,0,0,.3);
+}
+}
+
+@media(max-width:768px){
+
+.title{
+font-size:2.5rem;
+}
+
+.vs{
+font-size:4rem;
+margin: 20px 0;
+}
+
+.team{
+width:100%;
+}
+
+.team h2{
+font-size:1.4rem;
+}
+
+.time-box{
+min-width: 65px;
+padding: 10px;
+}
+
+.time-box span{
+font-size: 1.6rem;
+}
+
 }
 </style>
 </head>
 <body>
 
-<div class="card">
+<div class="hero">
 
-<div class="trophy">🏆</div>
+<div class="badge">🔥 GRAND FINAL 🔥</div>
 
-<div class="winner">CHAMPION</div>
+<h1 class="title">EMPIRE ESPORTS</h1>
 
-<div class="team">🔥 FIRE FOX 🔥</div>
+<p class="subtitle">Winner Takes The Crown</p>
+
+<div class="vs-container">
+
+<div class="team">
+<h2>BLACK DEVILS</h2>
+</div>
+
+<div class="vs">VS</div>
+
+<div class="team">
+<h2>FIRE FOX</h2>
+</div>
+
+</div>
+
+<!-- COUNTDOWN SECTION -->
+<div class="countdown">
+    
+    <!-- নতুন টাইমার বক্স এলিমেন্ট -->
+    <div class="timer-container" id="timerBox">
+        <div class="time-box">
+            <span id="days">00</span>
+            <p>Days</p>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <p>Hours</p>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <p>Min</p>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <p>Sec</p>
+        </div>
+    </div>
+
+    <!-- লাইভ নোটিশ বক্স -->
+    <div class="live-match" id="liveStatus" style="display: none;">
+        <span class="live-dot"></span>
+        🔴 MATCH LIVE NOW
+    </div>
+</div>
 
 <div class="prize">
-💰 Prize Won: 300 BDT
+<h2>🏆 CHAMPION PRIZE</h2>
+<div class="money">300 BDT</div>
 </div>
 
-<div class="msg">
-Congratulations Fire Fox for becoming the Champion of Empire Esports Grand Final.
+<div class="rules">
+<h2>📜 FINAL RULES</h2>
+
+<li>✅ All Teams Must Be Ready Before Match</li>
+<li>✅ No Hack / No Emulator</li>
+<li>✅ Host Decision Is Final</li>
+<li>✅ Any Form Of Cheating Will Result In Disqualification</li>
+
 </div>
 
 </div>
+
+<!-- JAVASCRIPT FOR COUNTDOWN -->
+<script>
+const targetDate = new Date("June 20, 2026 19:30:00").getTime();
+
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    // দিন, ঘণ্টা, মিনিট ও সেকেন্ড এর ম্যাথ ক্যালকুলেশন
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // জিরো প্যাডিং (যেমন: ৫ সেকেন্ড থাকলে ০৫ দেখাবে)
+    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+    // কাউন্টডাউন শেষ হওয়ার পরের স্মার্ট সুইচ লজিক
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("timerBox").style.display = "none"; // টাইমার গায়েব হবে
+        document.getElementById("liveStatus").style.display = "flex"; // লাইভ বক্স অন হবে
+    } else {
+        document.getElementById("timerBox").style.display = "flex";
+        document.getElementById("liveStatus").style.display = "none";
+    }
+}, 1000);
+</script>
 
 </body>
 </html>
