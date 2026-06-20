@@ -70,6 +70,7 @@ padding:35px;
 border-radius:25px;
 min-width:280px;
 backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,0,0,.15);
 }
 
 .team h2{
@@ -93,14 +94,36 @@ animation:glow 1.5s infinite alternate;
 .countdown{
 max-width:500px;
 margin:40px auto;
+}
+
+.live-match{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
 padding:20px;
-border-radius:15px;
-background:#08111f;
-border:1px solid rgba(255,0,0,.3);
-font-size:1.5rem;
-font-weight:700;
-color:#00ff88;
-text-align:center;
+border-radius:16px;
+background:rgba(255,0,0,.08);
+border:1px solid rgba(255,0,0,.4);
+color:#ff4d4d;
+font-size:1.6rem;
+font-weight:800;
+box-shadow:
+0 0 15px rgba(255,0,0,.4),
+0 0 40px rgba(255,0,0,.2);
+animation:livePulse 2s infinite;
+}
+
+.live-dot{
+width:14px;
+height:14px;
+border-radius:50%;
+background:#ff0000;
+box-shadow:
+0 0 10px #ff0000,
+0 0 25px #ff0000,
+0 0 50px #ff0000;
+animation:blink 1s infinite;
 }
 
 .prize{
@@ -110,6 +133,7 @@ padding:30px;
 background:#111827;
 border-radius:20px;
 text-align:center;
+border:1px solid rgba(255,215,0,.2);
 }
 
 .prize h2{
@@ -162,6 +186,28 @@ text-shadow:
 }
 }
 
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:.3;}
+100%{opacity:1;}
+}
+
+@keyframes livePulse{
+0%{
+box-shadow:
+0 0 15px rgba(255,0,0,.3);
+}
+50%{
+box-shadow:
+0 0 35px rgba(255,0,0,.6),
+0 0 80px rgba(255,0,0,.3);
+}
+100%{
+box-shadow:
+0 0 15px rgba(255,0,0,.3);
+}
+}
+
 @media(max-width:768px){
 
 .title{
@@ -196,7 +242,7 @@ font-size:1.4rem;
 <div class="vs-container">
 
 <div class="team">
-<h2>ELITE ASSASSINS</h2>
+<h2>BLACK DEVILS</h2>
 </div>
 
 <div class="vs">VS</div>
@@ -207,8 +253,11 @@ font-size:1.4rem;
 
 </div>
 
-<div class="countdown" id="countdown">
-Loading...
+<div class="countdown">
+<div class="live-match">
+<span class="live-dot"></span>
+🔴 MATCH LIVE NOW
+</div>
 </div>
 
 <div class="prize">
@@ -219,43 +268,14 @@ Loading...
 <div class="rules">
 <h2>📜 FINAL RULES</h2>
 
-<li>✅ All Teams Must Be Ready Before Match.</li>
-<li>✅ No Hack / No Emulator.</li>
-<li>✅ Host Decision Is Final.</li>
-<li>✅ Any Form Of Cheating Will Result In Disqualification.</li>
+<li>✅ All Teams Must Be Ready Before Match</li>
+<li>✅ No Hack / No Emulator</li>
+<li>✅ Host Decision Is Final</li>
+<li>✅ Any Form Of Cheating Will Result In Disqualification</li>
 
 </div>
 
 </div>
-
-<script>
-
-const targetDate = new Date().getTime() + (10 * 60 * 1000);
-
-setInterval(function(){
-
-const now = new Date().getTime();
-const distance = targetDate - now;
-
-if(distance <= 0){
-document.getElementById("countdown").innerHTML =
-"🔴 MATCH LIVE NOW";
-return;
-}
-
-const hours = Math.floor(distance / (1000*60*60));
-const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-document.getElementById("countdown").innerHTML =
-"⏳ Match Starts In: " +
-hours + "h " +
-minutes + "m " +
-seconds + "s";
-
-},1000);
-
-</script>
 
 </body>
 </html>
